@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>corona outbreak in the world</title>
+
+  <script src="https://kit.fontawesome.com/3b37ad1edb.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet" />
+
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="corona.css" />
+  <link rel="stylesheet" href="corona_sml.css" />
+  <script src="corona.js"></script>
+</head>
+
+<body onload="myfunction()">
+  <div id="loading"></div>
+  <div class="main_bar">
+    <input class="search_bar" id="myinput" type="text" placeholder="search...." name="search" onkeyup="searchfun()" />
+
+    <button type="submit" id="search"><i class="fas fa-search"></i></button>
+  </div>
+  <div class="date" id="present_date_new"></div>
+  <div class="top-container">
+    <div class="cases_box">
+      <ul class="corona_cases">
+        <li class="confirmed_text">Confirmed</li>
+        <li class="active_text">Active</li>
+        <li class="recovered_text">Recovered</li>
+        <li class="deceased_text">Deceased</li>
+      </ul>
+    </div>
+
+    <div class="cases_count_new">
+      <ul class="corona_count_new">
+        <li class="count_new" id="confirmed_count_new"></li>
+        <li class="count_new" id="active_count_new"></li>
+        <li class="count_new" id="recovered_count_new"></li>
+        <li class="count_new" id="deceased_count_new"></li>
+      </ul>
+    </div>
+    <div class="cases_count">
+      <ul class="corona_count">
+        <li class="count" id="confirmed_count"></li>
+        <li class="count" id="active_count"></li>
+        <li class="count" id="recovered_count"></li>
+        <li class="count" id="deceased_count"></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="sign">
+      <button id="adjust" onclick="adjustFunction()">
+        <i class="fas fa-adjust"></i>
+      </button>
+      <a href="https://www.instagram.com/vivek07____/">
+        <button id="instagram"><i class="fab fa-instagram"></i></button></a>
+      <a href="https://twitter.com/?lang=en">
+        <button id="twitter"><i class="fab fa-twitter"></i></button></a>
+      <a href="https://www.google.com/">
+        <button id="google"><i class="fab fa-google"></i></button></a>
+    </div>
+    <div id="infomenu">
+      <div class="menu1" id="menu">
+        <button class="bt" type="button" onclick="document.getElementById('readit1').style.display = 'block'">
+          Symptoms And Causes</button>
+        <div id="readit1" class="popup">
+          <button type="button" onclick="document.getElementById('readit1').style.display = 'none'">
+
+            <i class="fas fa-times-circle"></i></button>
+          <div class="content">
+            <h1>What are the symptoms of the novel coronavirus (COVID-19) infection?</h1>
+            <p>The CDC says you may have coronavirus if you have these symptoms or combination of symptoms:
+              <ul>
+                <li> Fever or chills.</li>
+                <li> Cough.</li>
+                <li> Shortness of breath or difficulty breathing.</li>
+
+                <li>Tiredness</li>
+                <li> Muscle or body aches.</li>
+
+                <li>Headaches</li>
+                <li> Sore throat.</li>
+
+                <li> New loss of taste or smell.</li>
+                <li> Congestion or runny nose.</li>
+                <li>Nausea or vomiting.</li>
+                <li>Additional symptoms are possible.</li>
+              </ul>
+
+              <h4>Symptoms may appear between two and 14 days after exposure to the virus. Children have similar, but
+                usually milder, symptoms than adults. Older adults and people who have severe underlying medical
+                conditions like heart or lung disease or diabetes are at higher risk of more serious complication from
+                COVID-19.</h4>
+              .
+              .
+
+
+
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu2" id="menu">
+        <button class="bt" type="button" onclick="document.getElementById('readit2').style.display = 'block'">
+          Diagnosis and Tests</button>
+        <div id="readit2" class="popup">
+          <button type="button" onclick="document.getElementById('readit2').style.display = 'none'">
+            <i class="fas fa-times-circle"></i></button>
+          <div class="content">
+            <h1>How is coronavirus diagnosed?</h1>
+            <h4>COVID-19 is diagnosed with a laboratory test. Your healthcare provider may collect a sample of your
+              saliva or swab your nose or throat to send for testing.</h4>
+
+            <h2> When should I be tested for the coronavirus (COVID-19)?
+              Call your healthcare provider if you:</h2>
+
+            <p> Feel sick with fever, cough or have difficulty breathing.
+              <br> Have been in close contact with a person known or suspected to have COVID-19.
+              <br> Your healthcare provider will ask you questions about your symptoms. Your healthcare provider will
+              tell you if you need to be tested for the novel coronavirus, COVID-19 and where to go to be tested.
+            </p>
+            <h2>If I have a positive test for coronavirus, how long should I self-isolate?</h2>
+            <p>According to current CDC recommendations, you should self-isolate until you've met all three of the
+              following criteria:
+
+
+              <br> It's been 10 days since your symptoms first appeared.
+              <br> You've not had a fever for 24 hours and you've not used fever-lowing medications during this time.
+              <br> Your COVID-19 symptoms have improved.</p>
+            <h2>How long do I need to isolate myself if I’ve been around a person with COVID-19?</h2>
+            <p> According to the CDC, if you’ve been in close contact with a person who has COVID-19, your safest
+              strategy is to stay home for 14 days after you’ve last seen this person.</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu3" id="menu">
+        <button class="bt" type="button" onclick="document.getElementById('readit3').style.display = 'block'">
+          Management and Treatment</button>
+        <div id="readit3" class="popup">
+          <button type="button" onclick="document.getElementById('readit3').style.display = 'none'">
+            <i class="fas fa-times-circle"></i></button>
+          <div class="content">
+            <h2> What medications are currently approved to treat COVID-19?</h2>
+            <p> Currently, only one drug has received Food and Drug Administration (FDA) approval. Remdesivir (Veklury®)
+              is approved to treat hospitalized patients with COVID-19 infection.</p>
+
+            <h2> What treatments do people receive if they have COVID-19?</h2>
+            <p> One authoritative organization – The National Institutes of Health COVID-19 Treatment Guidelines Panel –
+              recommends the following treatments based on the severity of COVID-19.
+
+              If you’re not in the hospital or don’t need supplemental oxygen:
+
+              No specific antiviral or immunotherapy is recommended.</p>
+            <h3> If you’re in the hospital:</h3>
+
+            <p> You may be given IV remdesivir with or without the oral (by mouth) corticosteroid dexamethasone (or
+              other steroid) or dexamethasone alone if remdesivir can’t be used.
+              <br> Depending on the severity of your COVID infection, you may need:
+              <br> Supplemental oxygen (given through tubing inserted into your nostrils).
+              <br> Mechanical ventilation (receive oxygen through a tube inserted down your trachea). You are given
+              medications to keep you comfortable and sleepy as long as you’re receiving oxygen through a ventilator.
+              <br> Extracorporeal membrane oxygenation (ECMO). You continue to receive treatment while a machine pumps
+              your blood outside your body. It takes over the function of your body’s lungs and heart.
+
+            </p>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="menu4" id="menu">
+        <button class="bt" type="button" onclick="document.getElementById('readit4').style.display = 'block'">
+          Prevention</button>
+        <div id="readit4" class="popup">
+          <button type="button" onclick="document.getElementById('readit4').style.display = 'none'">
+            <i class="fas fa-times-circle"></i></button>
+          <div class="content">
+            <h2> How can I prevent getting the novel coronavirus (COVID-19)?</h2>
+            <p> Right now, the best defense to prevent getting COVID-19 is to follow some of the same steps you would
+              take
+              to prevent getting other viruses, such as the common cold or the flu.
+
+
+              <br> Wash your hands for at least 20 seconds— especially before eating and preparing food, after using the
+              bathroom, after wiping your nose, and after coming in contact with someone who has a cold.
+              <br> Avoid touching your eyes, nose and mouth to prevent the spread of viruses from your hands.
+              <br> Cover your mouth and nose with a tissue when sneezing and coughing or sneeze and cough into your
+              sleeve.
+              <br> Throw the tissue in the trash. Wash your hands afterward. Never cough or sneeze into your hands!
+              <br> Avoid close contact (within six feet) with those who have coughs, colds or are sick. Stay home if you
+              are
+              sick.
+              <br> If you are prone to sickness or have a weakened immune system, stay away from large crowds of people.
+              <br>Follow
+              the directions of your healthcare authorities especially during outbreaks.
+              <br> Clean frequently used surfaces (such as doorknobs and counter tops) with a virus-killing
+              disinfectant.
+              <br><br> Use hand sanitizers that contain at least 60% alcohol if soap and water are not available.
+              <br> Greet people with a friendly gesture instead of shaking hands.
+              <br> Get enough sleep, eat a healthy diet, drink plenty of liquids and exercise if you are able. These
+              steps will
+              <br> strengthen your immune system and enable you to fight off infections easier.</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu5" id="menu">
+        <button class="bt" type="button" onclick="document.getElementById('readit5').style.display = 'block'">
+          Myth Buster</button>
+        <div id="readit5" class="popup">
+          <button type="button" onclick="document.getElementById('readit5').style.display = 'none'">
+            <i class="fas fa-times-circle"></i></button>
+          <div class="content">
+            <h2> 1. Spraying chlorine or alcohol on the skin kills viruses in the body</h2>
+            <p> Applying alcohol or chlorine to the skin can cause harm, especially if it enters the eyes or mouth.
+              These chemicals can disinfect surfaces, but people should not use them on their bodies.
+
+              Also, these products cannot kill viruses inside the body.</p>
+            <h2>2. Everyone with COVID-19 dies </h2>
+            <p> This is false. As we explain above, COVID-19 is fatal for a small percentage of people who develop the
+              illness.
+
+              <br> The WHO have reported that around 80%Trusted Source of people with COVID-19 experience a relatively
+              form of the illness and do not need specialist treatment in a hospital. Mild symptoms may include a fever,
+              a cough, a sore throat, tiredness, and shortness of breath.
+
+              <br> Also, many people with the underlying infection experience no symptoms.</p>
+            <h2>3. You have to be with someone for 10 minutes to catch the virus </h2>
+            <p> The longer a person is close to someone with the infection, the likelier the virus is to transmit.
+              However, the virus can pass from person to person in under 10 minutes.</p>
+              <h2>4. The virus will die off when temperatures rise </h2>
+               <p> Some viruses, such as cold and flu viruses, spread more easily in colder months. This does not mean that their transmission stops in warmer weather.
+                
+              <br>  As it stands, scientists do not knowTrusted Source how temperature changes influence the behavior of SARS-CoV-2. </p>
+             <h2> 5. The outbreak began because people ate bat soup </h2>
+  <p>While scientists are confident that the virus started in animals, there is no evidence that soup was involved. </p> 
+          </div>
+        </div>
+      </div>
+      <div class="menu6" id="menu">
+        <a href="https://my.clevelandclinic.org/health/diseases/21214-coronavirus-covid-19#diagnosis-and-tests">
+          <button class="bt" type="button">
+            Read More...</button></a>
+
+      </div>
+    </div>
+
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Total Cases</th>
+            <th>New Cases</th>
+            <th>Total Recovered</th>
+            <th>New Recovered</th>
+            <th>Total Deaths</th>
+            <th>New Deaths</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div id="hello"></div>
+  </div>
+
+  <!-- <div class="sticky">
+
+  <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></a></button>
+
+</div> -->
+
+  <div id="map"></div>
+
+  <div class="chart">
+    <canvas id="myChart" style="width: 40vw; height: 56vh"></canvas>
+    <canvas id="mychart"></canvas>
+  </div>
+  <div class="footer">
+    <h3>COVID19</h3>
+    <span> copyright</span> <i class="far fa-copyright"></i>
+    <span>2021-2022 Vivek</span>
+  </div>
+
+  <script>
+    var preloader = document.getElementById("loading");
+
+    function myfunction() {
+      setTimeout(function () {
+        preloader.style.display = "none";
+      }, 1100);
+    }
+  </script>
+  <script>
+    mapboxgl.accessToken =
+      "pk.eyJ1Ijoidml2ZWs0NDAwIiwiYSI6ImNrcnEyZHJhczJqY2Qyd3RqNGUxMTA0cDcifQ.CYREe3yhHpzyQrDlB2_ohQ";
+    var map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/mapbox/dark-v10",
+      zoom: 1,
+      center: [0, 20],
+    });
+  </script>
+
+</body>
+
+</html>

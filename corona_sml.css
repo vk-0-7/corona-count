@@ -1,0 +1,73 @@
+@media (max-width: 480px) {
+  body {
+    background: rgb(43, 1, 1);
+    overflow-x: hidden;
+  }
+  .date {
+    display: none;
+  }
+  #hello {
+    top: 200px;
+    width: 85vw;
+    height: 124vh;
+    font-size: 2.0vw;
+    margin-right: 10px;
+} 
+  .sign {
+    display: none;
+  }
+  .cases_box {
+    font-size: 3vw;
+    align-items: center;
+    text-align: center;
+    left: 25vw;
+  }
+  .cases_count_new {
+    left: 26vw;
+    font-size: 1.3vw;
+
+  }
+
+  .cases_count {
+    left: 24vw;
+    font-size: 2.3vw;
+    top: 84px;
+
+  }
+  .table {
+    /* overflow-x: auto; */
+    font-size: 2.5vw;
+    width: 85vw;
+    /* padding-right: 5px; */
+    position: absolute;
+    top: 270px;
+  }
+  th {
+    font-size: 2vw;
+  }
+  td{
+      font-size: 2.0vw;
+  }
+#map{
+   position: relative;
+   top: 200px;
+   margin: 20px 20px;
+   height: 250px;
+}
+.chart{
+    position: relative;
+    top: 200px;
+    margin: auto;
+}
+.chart canvas{
+
+    width:45vw !important;
+    height:28vh !important;
+    font-size: 2rem;
+  
+  }
+.footer{
+    position: relative;
+    top: 220px;
+}
+}
