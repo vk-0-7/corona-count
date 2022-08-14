@@ -1,73 +1,104 @@
-@media (max-width: 480px) {
+ 
+ @media (max-width: 480px) {
   body {
-    background: rgb(43, 1, 1);
+    background: rgb(5, 5, 5);
     overflow-x: hidden;
   }
+  #search {
+    height: 35px;}
+
+    .search_bar {
+      height: 35px;}
+
   .date {
     display: none;
   }
+  .top-container {
+  
+      height: 80px;}
+
   #hello {
-    top: 200px;
+    top: 230px;
     width: 85vw;
     height: 124vh;
     font-size: 2.0vw;
     margin-right: 10px;
-} 
+    /* display: none; */
+  }
+  .container{
+    height: 140vh;
+  }
+
   .sign {
     display: none;
   }
+  #infomenu {
+    display: none;
+  }
+
   .cases_box {
     font-size: 3vw;
     align-items: center;
     text-align: center;
-    left: 25vw;
+    left: 21vw;
   }
-  .cases_count_new {
-    left: 26vw;
-    font-size: 1.3vw;
 
+  .cases_count_new {
+    left: 22vw;
+    font-size: 2.3vw;
+
+  }
+  .count_new{
+    font-size: 2.0vw;
   }
 
   .cases_count {
-    left: 24vw;
-    font-size: 2.3vw;
-    top: 84px;
+    left: 20vw;
+    font-size: 2.7vw;
+    top: 20px;
 
   }
+  .count{
+    font-size: 2.2vw;
+  }
+
   .table {
     /* overflow-x: auto; */
     font-size: 2.5vw;
     width: 85vw;
     /* padding-right: 5px; */
     position: absolute;
-    top: 270px;
+    top: 190px;
   }
+
   th {
     font-size: 2vw;
+    height: 35px;
   }
-  td{
-      font-size: 2.0vw;
-  }
-#map{
-   position: relative;
-   top: 200px;
-   margin: 20px 20px;
-   height: 250px;
-}
-.chart{
-    position: relative;
-    top: 200px;
-    margin: auto;
-}
-.chart canvas{
 
-    width:45vw !important;
-    height:28vh !important;
-    font-size: 2rem;
-  
+  td {
+    font-size: 2.0vw;
+    height: 25px;
   }
-.footer{
+ 
+
+  #map {
     position: relative;
-    top: 220px;
+    bottom:  13px;
+    margin: 20px 20px;
+    height: 260px;
+    /* display: none; */
+  }
+
+ .chart {
+   
+    display: none;
+  }
+
+  
+
+  #curve_chart{
+    height: 500px;
+    width: 500px;
 }
 }
