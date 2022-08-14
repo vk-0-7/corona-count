@@ -1,60 +1,64 @@
-fetch("https://corona.lmao.ninja/v2/all?yesterday")
+fetch("https://api.covid19api.com/summary")
     .then((totaldata) => {
         return totaldata.json();
     })
     .then((Total_data) => {
-        console.log(Total_data.cases);
+        console.log(Total_data.Global);
 
         //TOTAL CASES
 
         document.getElementById(
             "confirmed_count"
-        ).innerHTML = `${Total_data.cases}`;
+        ).innerHTML = `${Total_data.Global.TotalConfirmed}`;
         // const Totalconfirmed = ();
         // const Totalrecovered = (Totalconfirmed-20900000);
         // const Totaldeaths = (apidata_obj.Global.TotalDeaths);
-        document.getElementById("active_count").innerHTML = `${Total_data.active}`;
+        document.getElementById("active_count").innerHTML = `${Total_data.Global.TotalConfirmed-Math.round( Total_data.Global.TotalConfirmed/1.2)-Total_data.Global.TotalDeaths}`;
 
         document.getElementById(
             "recovered_count"
-        ).innerHTML = `${Total_data.recovered}`;
+        ).innerHTML =Math.round( `${Total_data.Global.TotalConfirmed/1.2}`);
         document.getElementById(
             "deceased_count"
-        ).innerHTML = `${Total_data.deaths}`;
+        ).innerHTML = `${Total_data.Global.TotalDeaths}`;
 
         //NEW CASES
 
         document.getElementById("confirmed_count_new").innerHTML = `${
-      "+" + Total_data.todayCases
+      "+" + Total_data.Global.NewConfirmed
     }`;
-        const Newconfirmed = Total_data.todayCases;
-        const Newdeaths = Total_data.todayDeaths;
-        let Newrecovered = Total_data.todayRecovered;
-        const active = Newconfirmed - Newdeaths - Newrecovered;
+        let Newconfirmed = Total_data.Global.NewConfirmed;
+        let Newdeaths = Total_data.Global.NewDeaths;
+        let Newrecovered = (Total_data.Global.NewConfirmed/1.2);
+        let active =Math.round(Newconfirmed - Newdeaths - Newrecovered);
         if (active > 0) {
             document.getElementById("active_count_new").innerHTML = `${"+" + active}`;
-        } else document.getElementById("active_count_new").innerHTML = `${active}`;
+        } 
+        else document.getElementById("active_count_new").innerHTML = `${active}`;
 
         document.getElementById("recovered_count_new").innerHTML = `${
-      "+" + Total_data.todayRecovered
+      "+" + Math.round(Newconfirmed/1.2)
     }`;
         document.getElementById("deceased_count_new").innerHTML = `${
-      "+" + Total_data.todayDeaths
+      "+" + Newdeaths
     }`;
     });
 
-// console.log("hii");
+
 fetch("https://api.covid19api.com/summary")
     .then((apidata) => {
-        // console.log(apidata);
+        
         return apidata.json();
     })
     .then((apidata_object) => {
         console.log(apidata_object.Global.TotalConfirmed);
-        const apidata_obj = apidata_object;
+        let apidata_obj = apidata_object;
+        let jsonDate=apidata_obj.Global.Date;
+        const date=new Date(jsonDate).toUTCString()
+        
         document.getElementById(
             "present_date_new"
-        ).innerHTML = `${apidata_obj.Global.Date}`;
+        ).innerHTML = `${"Updated  on  " + date}`;
 
         var table = "";
 
@@ -85,47 +89,7 @@ fetch("https://api.covid19api.com/summary")
             '<table  class="table2" border="1" >' + table + "</table>";
     });
 
-//    const searchfun= ()=>{
-//        let filter = document.getElementByTagName('myinput').value.toUpperCase();
-
-//     //    let mytable =document.getElementsByTagName('table');
-//         // let tbody = document.getElementsByTagName('tbody');
-//        let tr = document.getElementsByTagName('tr')
-
-//        for (var i = 0; i < tr.length; i++) {
-//            let td =tr[i].getElementsByTagName('td')[0];
-
-//            if(td){
-//                let textvalue =td.textContent || td.innerHTML;
-
-//                if (textvalue.toUpperCase().indexOf(filter) > -1 ) {
-//                    tr[i].style.display ="";
-//                }
-//                else{
-//                    tr[i].style.display ="none";
-//                }
-//            }
-//        }
-//    }
-
-// var mybutton = document.getElementById("myBtn");
-
-// When the user scrolls down 20px from the top of the document, show the button
-// window.onscroll = function() {scrollFunction()};
-
-// function scrollFunction() {
-//   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-//     mybutton.style.display = "block";
-//   } else {
-//     mybutton.style.display = "none";
-//   }
-// }
-
-// When the user clicks on the button, scroll to the top of the document
-// function topFunction() {
-//   document.body.scrollTop = 0;
-//   document.documentElement.scrollTop = 0;
-// }
+//   
 
 function adjustFunction() {
     var element = document.body;
@@ -165,6 +129,8 @@ Updatemap();
 
 //  CHARTS
 
+
+    
 fetch("https://api.covid19api.com/summary")
     .then((apidata) => {
         // console.log(apidata);
@@ -188,7 +154,7 @@ fetch("https://api.covid19api.com/summary")
             "Sept-21",
         ];
 
-        new Chart("myChart", {
+        new Chart("chart1", {
            
             type: "line",
             
@@ -213,7 +179,7 @@ fetch("https://api.covid19api.com/summary")
                     ],
                     borderColor: "red",
                     fill: false,
-                    borderWidth: 5,
+                    borderWidth: 3,
 
                 }, ],
             },
@@ -221,9 +187,12 @@ fetch("https://api.covid19api.com/summary")
                 
                 legend: {display: true},
                 scales: {
-                  yAxes: [{ticks: { fontSize: 20}}],
-                  xAxes: [{ticks: { fontSize: 20}}],
+                  yAxes: [{ticks: { fontSize: 12,fontColor:'#bbc1c6'}}],
+                  xAxes: [{ticks: { fontSize: 12,fontColor:'#bbc1c6'}}],
                 }
+                // ,gridLines: {  use this to make grid between data. it will be written in above yaxes
+                //     color: 'grey',
+                //  }
             },
             toolTip:{
                 fontSize: 30,
@@ -243,7 +212,7 @@ fetch("https://api.covid19api.com/summary")
             "Sept-21",
         ];
 
-        new Chart("mychart", {
+        new Chart("chart2", {
             type: "line",
            
             data: {
@@ -252,20 +221,20 @@ fetch("https://api.covid19api.com/summary")
                 datasets: [{
                     label: "Total Decreased",
                     data: [
-                        data3 - 2400000,
-                        data3 - 2100000,
-                        data3 - 1900000,
-                        data3 - 1800000,
-                        data3 - 1500000,
-                        data3 - 1200000,
-                        data3 - 900000,
-                        data3 - 600000,
-                        data3 - 300000,
+                        data3 - 4605000,
+                        data3 - 4500000,
+                        data3 - 4106000,
+                        data3 - 4002000,
+                        data3 - 3000000,
+                        data3 - 2500500,
+                        data3 - 1903000,
+                        data3 - 1400000,
+                        data3 - 1300700,
                         data3,
                     ],
                     borderColor: "grey",
                     fill: false,
-                    borderWidth: 5,
+                    borderWidth: 3,
                     
                 }, ],
             },
@@ -273,8 +242,8 @@ fetch("https://api.covid19api.com/summary")
                
                 legend: {display: true},
                 scales: {
-                  yAxes: [{ticks: { fontSize: 20}}],
-                  xAxes: [{ticks: { fontSize: 20}}],
+                  yAxes: [{ticks: { fontSize: 12,fontColor:'#bbc1c6'}}],
+                  xAxes: [{ticks: { fontSize: 12,fontColor:'#bbc1c6'}}],
                 },
                
             },
