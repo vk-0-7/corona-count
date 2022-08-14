@@ -59,9 +59,9 @@
   </div>
   <div class="container">
     <div class="sign">
-      <button id="adjust" onclick="adjustFunction()">
+      <!-- <button id="adjust" onclick="adjustFunction()">
         <i class="fas fa-adjust"></i>
-      </button>
+      </button> -->
       <a href="https://www.instagram.com/vivek07____/">
         <button id="instagram"><i class="fab fa-instagram"></i></button></a>
       <a href="https://twitter.com/?lang=en">
@@ -281,10 +281,11 @@
 
   <div id="map"></div>
 
-  <div class="chart">
-    <canvas id="myChart" style="width: 40vw; height: 56vh"></canvas>
-    <canvas id="mychart"></canvas>
+  <div class="chart" >
+    <canvas id="chart1" class="chartjs"></canvas>
+    <canvas id="chart2" class="chartjs"></canvas>
   </div>
+
   <div class="footer">
     <h3>COVID19</h3>
     <span> copyright</span> <i class="far fa-copyright"></i>
@@ -310,6 +311,7 @@
       center: [0, 20],
     });
   </script>
+  
 
 </body>
 
